@@ -84,6 +84,6 @@ if __name__ == '__main__':
     if must_run_makepot:
         tests.append(['travis_makepot'])
 
-    print "Do MAKEPOT?", must_run_makepot
+    print ("Do MAKEPOT?", must_run_makepot)
     if tests:
         exit(main(tests))
