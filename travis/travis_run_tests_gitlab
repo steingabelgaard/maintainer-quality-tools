@@ -79,7 +79,7 @@ if __name__ == '__main__':
         tests.append(['test_server.py'])
 
     elif tests_enabled:
-        tests.append(['test_server.py'])
+        tests.append(['test_server_gitlab.py'])
 
     if must_run_makepot:
         tests.append(['travis_makepot'])
