@@ -55,7 +55,7 @@ if __name__ == '__main__':
     is_oca_project = os.environ.get('TRAVIS_REPO_SLUG', '').startswith('OCA/')
 
     # TRAVIS_PULL_REQUEST contains the pull request number or 'false'
-    is_pull_request = os.environ.get('TRAVIS_PULL_REQUEST') != 'false'
+    is_pull_request = False # os.environ.get('TRAVIS_PULL_REQUEST') != 'false'
     # run makepot using a fresh database
     # where addons are going to be installed
     # is MAKEPOT=1 and TESTS=1, test_server.py will run
