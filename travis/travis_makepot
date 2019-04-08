@@ -84,11 +84,19 @@ def main(argv=None, database=None):
 
     if os.environ.get('BITBUCKET_REPO'):
         print("Pushing .pot files changes to Bitbucket")
-        r = subprocess.call([
-            'git', 'push',
-            '{BITBUCKET_REPO}'.format(**os.environ),
-            'HEAD:{TRAVIS_BRANCH}'.format(**os.environ),
-        ])
+        r = False
+        if os.environ.get('TRAVIS_BRANCH'):
+            r = subprocess.call([
+                'git', 'push',
+                '{BITBUCKET_REPO}'.format(**os.environ),
+                'HEAD:{TRAVIS_BRANCH}'.format(**os.environ),
+            ])
+        else:
+            r = subprocess.call([
+                'git', 'push',
+                '{BITBUCKET_REPO}'.format(**os.environ),
+                'HEAD:{CI_COMMIT_REF_NAME}'.format(**os.environ),
+            ])
         if r:
             return r
     else:
