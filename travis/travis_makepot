@@ -86,14 +86,14 @@ def main(argv=None, database=None):
         
         r = False
         if os.environ.get('CI_COMMIT_REF_NAME'):
-        	print("Pushing .pot files changes to Bitbucket - CI REF")
-        	r = subprocess.call([
+            print("Pushing .pot files changes to Bitbucket - CI REF")
+            r = subprocess.call([
                 'git', 'push',
                 '{BITBUCKET_REPO}'.format(**os.environ),
                 'HEAD:{CI_COMMIT_REF_NAME}'.format(**os.environ),
             ])
         else:
-        	print("Pushing .pot files changes to Bitbucket - TRAVIS BRANCH")
+            print("Pushing .pot files changes to Bitbucket - TRAVIS BRANCH")
             r = subprocess.call([
                 'git', 'push',
                 '{BITBUCKET_REPO}'.format(**os.environ),
