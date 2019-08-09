@@ -104,7 +104,7 @@ def main(argv=None, database=None):
             ])
             
         if r:
-        	print("Error on git PUSH")
+            print("Error on git PUSH")
             return r
     else:
         print("Pushing .pot files changes to GitHub")
@@ -115,7 +115,7 @@ def main(argv=None, database=None):
             'HEAD:{TRAVIS_BRANCH}'.format(**os.environ),
         ])
         if r:
-        	print("Error on git PUSH")
+            print("Error on git PUSH")
             return r
 
     return 0
