@@ -83,6 +83,8 @@ def main(argv=None, database=None):
             print("Error on click-odoo-makepot")
             return r
 
+	subprocess.call([
+                'git', 'status'])
     if os.environ.get('BITBUCKET_REPO'):
         
         r = False
