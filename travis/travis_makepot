@@ -80,6 +80,7 @@ def main(argv=None, database=None):
             '--commit-message="[ci skip] Update {addon_name}.pot"',
         ])
         if r:
+            print("Error on click-odoo-makepot")
             return r
 
     if os.environ.get('BITBUCKET_REPO'):
@@ -101,6 +102,7 @@ def main(argv=None, database=None):
             ])
             
         if r:
+        	print("Error on git PUSH")
             return r
     else:
         print("Pushing .pot files changes to GitHub")
@@ -111,6 +113,7 @@ def main(argv=None, database=None):
             'HEAD:{TRAVIS_BRANCH}'.format(**os.environ),
         ])
         if r:
+        	print("Error on git PUSH")
             return r
 
     return 0
