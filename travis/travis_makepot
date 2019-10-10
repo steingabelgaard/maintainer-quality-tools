@@ -89,6 +89,12 @@ def main(argv=None, database=None):
         
         r = False
         if os.environ.get('CI_COMMIT_REF_NAME'):
+        print("Pull from Bitbucket - CI REF")
+            r = subprocess.call([
+                'git', 'pull',
+                '{BITBUCKET_REPO}'.format(**os.environ),
+                'HEAD:{CI_COMMIT_REF_NAME}'.format(**os.environ),
+            ])
             print("Pushing .pot files changes to Bitbucket - CI REF")
             r = subprocess.call([
                 'git', 'push',
