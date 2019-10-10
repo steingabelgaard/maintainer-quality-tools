@@ -89,7 +89,7 @@ def main(argv=None, database=None):
         
         r = False
         if os.environ.get('CI_COMMIT_REF_NAME'):
-        print("Pull from Bitbucket - CI REF")
+            print("Pull from Bitbucket - CI REF")
             r = subprocess.call([
                 'git', 'pull',
                 '{BITBUCKET_REPO}'.format(**os.environ),
