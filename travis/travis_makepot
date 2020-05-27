@@ -113,7 +113,7 @@ def main(argv=None, database=None):
             print("Error on git PUSH")
             return r
     elif os.environ.get('GIT_HOST'):
-		print("Pushing .pot files changes to ", os.environ.get('GIT_HOST'))
+        print("Pushing .pot files changes to ", os.environ.get('GIT_HOST'))
         r = subprocess.call([
             'git', 'push',
             'https://{GITHUB_USER}:{GITHUB_TOKEN}@{GIT_HOST}/'
