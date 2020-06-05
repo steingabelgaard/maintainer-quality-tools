@@ -81,6 +81,7 @@ def main(argv=None, database=None):
         ])
         if r:
             print("Error on click-odoo-makepot")
+            subprocess.call(['git', 'status'])
             return r
 
     subprocess.call(['git', 'status'])
