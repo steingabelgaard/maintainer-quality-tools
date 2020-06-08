@@ -75,9 +75,9 @@ def main(argv=None, database=None):
             'click-odoo-makepot',
             '-d', database,
             '--msgmerge-if-new-pot',
-            '--commit',
+            #'--commit',
             '--log-level=debug',
-            '--commit-message="[ci skip] Update {addon_name}.pot"',
+            #'--commit-message="[ci skip] Update {addon_name}.pot"',
         ])
         if r:
             print("Error on click-odoo-makepot")
