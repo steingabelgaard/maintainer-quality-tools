@@ -71,6 +71,7 @@ def main(argv=None, database=None):
 
     with setenv('PYTHONPATH', server_path):
         print("Exporting .pot files")
+        subprocess.call(['ls', '-al'])
         r = subprocess.call([
             'click-odoo-makepot',
             '-d', database,
@@ -82,6 +83,7 @@ def main(argv=None, database=None):
         if r:
             print("Error on click-odoo-makepot")
             subprocess.call(['git', 'status'])
+            subprocess.call(['ls', '-al'])
             return r
 
     subprocess.call(['git', 'status'])
