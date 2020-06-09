@@ -9,7 +9,7 @@ import subprocess
 
 from test_server import setup_server, get_addons_path, \
     get_server_path, get_addons_to_check, create_server_conf, get_server_script
-
+from . import getaddons
 
 @contextmanager
 def setenv(key, value):
@@ -23,6 +23,19 @@ def setenv(key, value):
         else:
             del os.environ[key]
 
+
+def commit_if_needed(paths, message, cwd="."):
+    paths = [os.path.realpath(p) for p in paths]
+    cmd = ["git", "add", "-f", "--"] + paths
+    subprocess.check_call(cmd, cwd=cwd)
+    cmd = ["git", "diff", "--quiet", "--exit-code", "--cached", "--"] + paths
+    r = subprocess.call(cmd, cwd=cwd)
+    if r != 0:
+        cmd = ["git", "commit", "-m", message, '--no-verify', "--"] + paths
+        subprocess.check_call(cmd, cwd=cwd)
+        return True
+    else:
+        return False
 
 def main(argv=None, database=None):
     odoo_full = os.environ.get("ODOO_REPO", "odoo/odoo")
@@ -69,6 +82,7 @@ def main(argv=None, database=None):
     if r:
         return r
 
+	print("Addons: %s" % addons)
     with setenv('PYTHONPATH', server_path):
         print("Exporting .pot files")
         subprocess.call(['ls', '-al'])
@@ -87,6 +101,17 @@ def main(argv=None, database=None):
             return r
 
     subprocess.call(['git', 'status'])
+    subprocess.call(['ls', '-al'])
+    
+    for addon in addons_list:
+    	pot_filepath = os.path.join(addon, 'i18n', addon + '.pot'
+    	if os.path.exists(pot_filepath)
+		    files_to_commit = set()
+    		files_to_commit.add(pot_filepath)
+	    	commit_if_needed(
+            	list(files_to_commit),
+            	commit_message.format(addon_name=addon),
+        	)
     
     if os.environ.get('BITBUCKET_REPO'):
         
