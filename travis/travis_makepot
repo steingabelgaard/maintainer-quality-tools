@@ -82,7 +82,7 @@ def main(argv=None, database=None):
     if r:
         return r
 
-	print("Addons: %s" % addons)
+    print("Addons: %s" % addons)
     with setenv('PYTHONPATH', server_path):
         print("Exporting .pot files")
         subprocess.call(['ls', '-al'])
@@ -104,15 +104,15 @@ def main(argv=None, database=None):
     subprocess.call(['ls', '-al'])
     
     for addon in addons_list:
-    	pot_filepath = os.path.join(addon, 'i18n', addon + '.pot'
-    	if os.path.exists(pot_filepath)
-		    files_to_commit = set()
-    		files_to_commit.add(pot_filepath)
-	    	commit_if_needed(
-            	list(files_to_commit),
-            	commit_message.format(addon_name=addon),
-        	)
-    
+        pot_filepath = os.path.join(addon, 'i18n', addon + '.pot'
+        if os.path.exists(pot_filepath)
+            files_to_commit = set()
+            files_to_commit.add(pot_filepath)
+            commit_if_needed(
+                list(files_to_commit),
+                commit_message.format(addon_name=addon),
+            )
+
     if os.environ.get('BITBUCKET_REPO'):
         
         r = False
