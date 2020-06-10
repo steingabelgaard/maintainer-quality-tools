@@ -103,6 +103,7 @@ def main(argv=None, database=None):
     subprocess.call(['git', 'status'])
     subprocess.call(['ls', '-al'])
     
+    commit_message="[ci skip] Update {addon_name}.pot"
     for addon in addons_list:
         pot_filepath = os.path.join(addon, 'i18n', addon + '.pot')
         if os.path.exists(pot_filepath):
