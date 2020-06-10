@@ -105,7 +105,7 @@ def main(argv=None, database=None):
     
     for addon in addons_list:
         pot_filepath = os.path.join(addon, 'i18n', addon + '.pot'
-        if os.path.exists(pot_filepath)
+        if os.path.exists(pot_filepath):
             files_to_commit = set()
             files_to_commit.add(pot_filepath)
             commit_if_needed(
