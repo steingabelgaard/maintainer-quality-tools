@@ -9,7 +9,7 @@ import subprocess
 
 from test_server import setup_server, get_addons_path, \
     get_server_path, get_addons_to_check, create_server_conf, get_server_script
-from . import getaddons
+import getaddons
 
 @contextmanager
 def setenv(key, value):
