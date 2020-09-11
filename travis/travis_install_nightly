@@ -119,7 +119,7 @@ if [[ "${MQT_DEP}" == "OCA" ]] ; then
 else
     pip install --upgrade pip setuptools wheel
     # Needed for tour tests to not be skipped
-    pip install --upgrade websocket-client
+    # pip install --upgrade websocket-client
 
     echo "Installing Odoo"
     pip install -r ${ODOO_PATH}/requirements.txt -e ${ODOO_PATH}
