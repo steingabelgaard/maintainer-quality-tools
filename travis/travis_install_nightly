@@ -9,7 +9,6 @@ if [ "${LINT_CHECK}" != "0" ]; then
     wget -q https://raw.githubusercontent.com/OCA/pylint-odoo/master/requirements.txt -O ${HOME}/maintainer-quality-tools/travis/pylint_odoo_requirements.txt
     pip install --upgrade -r ${HOME}/maintainer-quality-tools/travis/pylint_odoo_requirements.txt
     pip install --upgrade --pre --no-deps git+https://github.com/OCA/pylint-odoo.git   # To use last version ever
-    pip install --upgrade pylint-odoo==3.1.0
     npm install -g eslint  # Extra package for pylint-odoo plugin
     if [ -f "${HOME}/.nvm/nvm.sh" ]; then
         # Update nodejs v11.latest required by eslint
@@ -118,6 +117,8 @@ if [[ "${MQT_DEP}" == "OCA" ]] ; then
     clone_oca_dependencies
 else
     pip install --upgrade pip setuptools wheel
+    # Needed for tour tests to not be skipped
+    pip install --upgrade websocket-client
 
     echo "Installing Odoo"
     pip install -r ${ODOO_PATH}/requirements.txt -e ${ODOO_PATH}
@@ -134,6 +135,7 @@ else
     pip install --pre -r test-requirements.txt \
         --extra-index-url https://wheelhouse.odoo-community.org/oca-simple/
 fi
+
 
 # Use reference .coveragerc
 cp ${HOME}/maintainer-quality-tools/cfg/.coveragerc .
