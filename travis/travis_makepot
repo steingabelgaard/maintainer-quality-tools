@@ -165,6 +165,12 @@ def main(argv=None, database=None):
             print("Error on git PUSH")
             return r
 
+    for addon in addons_list:
+        po_filepath = os.path.join(addon, 'i18n', 'da.po')
+        r = subprocess.call(['msgfmt', '-f', '--check-format', po_filepath])
+        if r:
+            print("Ptyhon format error in %s", po_filepath)
+            return r
     return 0
 
 
